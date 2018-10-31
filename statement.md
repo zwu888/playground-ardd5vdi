@@ -1,19 +1,36 @@
-# Welcome!
-
-This C++ template lets you get started quickly with a simple one-page playground.
+# description: 
+ The code is ill-formed.  Non-const member functions can not be called on const objects.
 
 ```C++ runnable
 #include <iostream>
 
-using namespace std;
-
-int main() 
+struct Foo
 {
-    cout << "Hello, World!";
-    return 0;
+  Foo() {} 
+
+  void go()
+  {
+    std::cout << "Foo" << std::endl;
+  }
+};
+
+struct Bar : public Foo
+{
+  Bar() {}
+
+  void go()
+  {
+    std::cout << "Bar" << std::endl;
+  }
+};
+
+int main(int argc, char** argv) 
+{ 
+  Bar b;
+
+  const Foo f = b;
+
+  f.go();
+
+  return 0; 
 }
-```
-
-# Advanced usage
-
-If you want a more complex example (external libraries, viewers...), use the [Advanced C++ template](https://tech.io/select-repo/598)
